@@ -22,32 +22,29 @@ public class TwitterController {
 
 	public final static String URI_BASE = "api/tweets/v1";
 	public final static String ERROR_404_PARAMETRO_VIEW = "O parâmetro view é obrigatório.";
-	
+
 	@Autowired
 	private TwitterService twitterService;
-	
+
 	@Autowired
 	private IndicadoresService indicadoresService;
-	
-	@RequestMapping(value = "tweets", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, method=RequestMethod.POST)
+
+	@RequestMapping(value = "tweets", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, method = RequestMethod.POST)
 	public ResponseEntity<Object> processTweets(@RequestBody EntradaProcessarTwitter request) {
-		try {
-			twitterService.processarTweets(request.getHashtags());
-			return new ResponseEntity<>(request, HttpStatus.OK);
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-		}
-		
+		twitterService.processarTweets(request.getHashtags());
+		return new ResponseEntity<>(request, HttpStatus.OK);
 	}
-	
-	@RequestMapping(value = "tweets", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, method=RequestMethod.GET)
+
+	@RequestMapping(value = "tweets", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, method = RequestMethod.GET)
 	public ResponseEntity<Object> consultarIndicadores(@RequestParam final String view) {
-		if("indicadores".equals(view)) {
-			RetornoConsulta retorno = new RetornoConsulta(TransformacaoIndicadores.transformar(indicadoresService.consultarTopUsers(), indicadoresService.consultarTweetsHashTag(), indicadoresService.consultarTweetsHorasDia()));
+		if ("indicadores".equals(view)) {
+			RetornoConsulta retorno = new RetornoConsulta(
+					TransformacaoIndicadores.transformar(indicadoresService.consultarTopUsers(),
+							indicadoresService.consultarTweetsHashTag(), indicadoresService.consultarTweetsHorasDia()));
 			return new ResponseEntity<>(retorno, HttpStatus.OK);
 		} else {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(TwitterController.ERROR_404_PARAMETRO_VIEW);
 		}
 	}
-	
+
 }

@@ -3,6 +3,7 @@ package br.com.brunogiannella.icase.itaucasetwitter.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.com.brunogiannella.icase.itaucasetwitter.model.TopUsers;
@@ -25,11 +26,11 @@ public class IndicadoresService {
 	private TweetsHorasDiaRepository tweetsHorasDiaRepository;
 
 	public List<TopUsers> consultarTopUsers() {
-		return topUsersRepository.findAll();
+		return topUsersRepository.findAll(new Sort(Sort.Direction.DESC, "quantidadeSeguidores")).subList(0, 5);
 	}
 
 	public List<TweetsHashTag> consultarTweetsHashTag() {
-		return tweetsHashTagRepository.findAll();
+		return tweetsHashTagRepository.findAll(new Sort(Sort.Direction.DESC, "total"));
 	}
 
 	public List<TweetsHorasDia> consultarTweetsHorasDia() {

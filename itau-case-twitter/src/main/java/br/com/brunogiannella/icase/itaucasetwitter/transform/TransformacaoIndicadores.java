@@ -11,6 +11,8 @@ public class TransformacaoIndicadores {
 
 	public static SaidaIndicadoresTweets transformar(List<TopUsers> topUsers, List<TweetsHashTag> tweetsHashTag, List<TweetsHorasDia> tweetsHorasDia) {
 		SaidaIndicadoresTweets saida = new SaidaIndicadoresTweets();
+		saida.setTopUsers(topUsers);
+		saida.setHashTagsPorPais(tweetsHashTag);
 		return saida;
 	}
 	

@@ -1,32 +1,19 @@
 package br.com.brunogiannella.icase.itaucasetwitter.model;
 
-import org.springframework.data.annotation.Id;
-
 public class TweetsHashTag {
 
-	@Id
-	public Long id;
-	public String hashTag;
-	public String pais;
-	public Long total;
+	private String hashTag;
+	private String pais;
+	private Long total;
 
 	public TweetsHashTag() {
 	}
 
-	public TweetsHashTag(Long id, String hashTag, String pais, Long total) {
+	public TweetsHashTag(String hashTag, String pais, Long total) {
 		super();
-		this.id = id;
 		this.hashTag = hashTag;
 		this.pais = pais;
 		this.total = total;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getHashTag() {
