@@ -1,0 +1,33 @@
+{
+    "data": {
+        "topUsers": [{
+                "id": "brunogiannella",
+                "quantidadeSeguidores": 300
+            },
+            {
+                "id": "rastaman",
+                "quantidadeSeguidores": 4569
+            },
+            {
+                "id": "testeteste",
+                "quantidadeSeguidores": 200
+            }
+        ],
+        "hashtagPorPais": [{
+                "hashtag": "openbanking",
+                "idioma": "en",
+                "total": 4
+            },
+            {
+                "hashtag": "openbanking",
+                "idioma": "pt",
+                "total": 2
+            },
+            {
+                "hashtag": "wso2",
+                "idioma": "en",
+                "total": 1
+            }
+        ]
+    }
+}

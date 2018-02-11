@@ -1,2 +1,0 @@
-docker build -t spring-icase:latest .
-docker run -d -p 27000:27017 --name mongo mongo
