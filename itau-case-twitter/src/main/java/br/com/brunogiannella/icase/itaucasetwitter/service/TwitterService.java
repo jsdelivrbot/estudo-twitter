@@ -31,21 +31,20 @@ public class TwitterService {
 	private TweetsHorasDiaRepository tweetsHorasDiaRepository;
 
 	public void processarTweets(List<String> hashtags) {
-		for(String hashtag : hashtags) {
+		for (String hashtag : hashtags) {
 			List<Tweet> tweets = this.twitter.searchOperations().search(hashtag, 20).getTweets();
 
 			if (tweets != null) {
 				tweetRepository.deleteAll();
 
 				for (Tweet t : tweets) {
-					tweetRepository
-							.save(new br.com.brunogiannella.icase.itaucasetwitter.model.Tweet(t.getIdStr(), t.getText(),
-									t.getUser().getName(), t.getFromUser(), String.valueOf(t.getUser().getFollowersCount()),
-									t.getUser().getLocation(), t.getLanguageCode(), "openbaking"));
+					tweetRepository.save(new br.com.brunogiannella.icase.itaucasetwitter.model.Tweet(t.getIdStr(), t.getText(),
+							t.getUser().getName(), t.getFromUser(), String.valueOf(t.getUser().getFollowersCount()),
+							t.getUser().getLocation(), t.getLanguageCode(), hashtag));
 				}
 			}
 		}
-		
+
 		processarTopUsers();
 		processaHashTags();
 		processaHorasDia();
