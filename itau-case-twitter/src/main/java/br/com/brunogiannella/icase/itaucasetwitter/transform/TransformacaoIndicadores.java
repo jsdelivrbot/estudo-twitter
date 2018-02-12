@@ -13,6 +13,7 @@ public class TransformacaoIndicadores {
 		SaidaIndicadoresTweets saida = new SaidaIndicadoresTweets();
 		saida.setTopUsers(topUsers);
 		saida.setHashTagsPorPais(tweetsHashTag);
+		saida.setResumoTweetsPorHora(tweetsHorasDia);
 		return saida;
 	}
 	

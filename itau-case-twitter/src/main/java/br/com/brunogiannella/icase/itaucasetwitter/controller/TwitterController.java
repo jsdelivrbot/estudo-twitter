@@ -20,7 +20,7 @@ import br.com.brunogiannella.icase.itaucasetwitter.transform.TransformacaoIndica
 @RequestMapping(TwitterController.URI_BASE)
 public class TwitterController {
 
-	public final static String URI_BASE = "api/tweets/v1";
+	public final static String URI_BASE = "v1";
 	public final static String ERROR_404_PARAMETRO_VIEW = "O parâmetro view é obrigatório.";
 
 	@Autowired

@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.brunogiannella.icase.itaucasetwitter.model.TopUsers;
 import br.com.brunogiannella.icase.itaucasetwitter.model.TweetsHashTag;
+import br.com.brunogiannella.icase.itaucasetwitter.model.TweetsHorasDia;
 
 public class SaidaIndicadoresTweets implements Serializable {
 
@@ -15,6 +16,7 @@ public class SaidaIndicadoresTweets implements Serializable {
 
 	private List<TopUsers> topUsers;
 	private List<TweetsHashTag> hashTagsPorPais;
+	private List<TweetsHorasDia> resumoTweetsPorHora;
 
 	public List<TopUsers> getTopUsers() {
 		return topUsers;
@@ -30,6 +32,14 @@ public class SaidaIndicadoresTweets implements Serializable {
 
 	public void setHashTagsPorPais(List<TweetsHashTag> hashTagsPorPais) {
 		this.hashTagsPorPais = hashTagsPorPais;
+	}
+
+	public List<TweetsHorasDia> getResumoTweetsPorHora() {
+		return resumoTweetsPorHora;
+	}
+
+	public void setResumoTweetsPorHora(List<TweetsHorasDia> resumoTweetsPorHora) {
+		this.resumoTweetsPorHora = resumoTweetsPorHora;
 	}
 
 }

@@ -1,5 +1,7 @@
 package br.com.brunogiannella.icase.itaucasetwitter.model;
 
+import java.util.Date;
+
 import org.springframework.data.annotation.Id;
 
 public class Tweet {
@@ -12,13 +14,14 @@ public class Tweet {
 	private String quantidadeSeguidores;
 	private String pais;
 	private String idioma;
+	private Date data;
 	private String hashtag;
 
 	public Tweet() {
 	}
 
 	public Tweet(String id, String texto, String usuario, String idUsuario, String quantidadeSeguidores, String pais,
-			String idioma, String hashtag) {
+			String idioma, Date data, String hashtag) {
 		super();
 		this.id = id;
 		this.texto = texto;
@@ -27,8 +30,11 @@ public class Tweet {
 		this.quantidadeSeguidores = quantidadeSeguidores;
 		this.pais = pais;
 		this.idioma = idioma;
+		this.data = data;
 		this.hashtag = hashtag;
 	}
+
+
 
 	public String getId() {
 		return id;
@@ -94,4 +100,12 @@ public class Tweet {
 		this.hashtag = hashtag;
 	}
 
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
+	
 }

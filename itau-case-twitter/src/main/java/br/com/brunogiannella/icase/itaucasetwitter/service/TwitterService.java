@@ -1,5 +1,6 @@
 package br.com.brunogiannella.icase.itaucasetwitter.service;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.brunogiannella.icase.itaucasetwitter.model.TopUsers;
 import br.com.brunogiannella.icase.itaucasetwitter.model.TweetsHashTag;
+import br.com.brunogiannella.icase.itaucasetwitter.model.TweetsHorasDia;
 import br.com.brunogiannella.icase.itaucasetwitter.repository.TopUsersRepository;
 import br.com.brunogiannella.icase.itaucasetwitter.repository.TweetRepository;
 import br.com.brunogiannella.icase.itaucasetwitter.repository.TweetsHashTagRepository;
@@ -39,13 +41,13 @@ public class TwitterService {
 		tweetRepository.deleteAll();
 		
 		for (String hashtag : hashtags) {
-			List<Tweet> tweets = this.twitter.searchOperations().search(hashtag, 20).getTweets();
+			List<Tweet> tweets = this.twitter.searchOperations().search(hashtag, 100).getTweets();
 
 			if (tweets != null) {
 				for (Tweet t : tweets) {
 					tweetRepository.save(new br.com.brunogiannella.icase.itaucasetwitter.model.Tweet(t.getIdStr(), t.getText(),
 							t.getUser().getName(), t.getFromUser(), String.valueOf(t.getUser().getFollowersCount()),
-							t.getUser().getLocation(), t.getLanguageCode(), hashtag));
+							t.getUser().getLocation(), t.getLanguageCode(), t.getCreatedAt(), hashtag));
 				}
 			}
 		}
@@ -117,6 +119,29 @@ public class TwitterService {
 
 	private void processaHorasDia() {
 		tweetsHorasDiaRepository.deleteAll();
+		
+		List<br.com.brunogiannella.icase.itaucasetwitter.model.Tweet> tweets = tweetRepository.findAll();
+		Map<Integer, Long> tweetsHorasDia = new HashMap<Integer, Long>();
+		
+		for(br.com.brunogiannella.icase.itaucasetwitter.model.Tweet t : tweets) {
+			Calendar postDate = Calendar.getInstance();
+			postDate.setTime(t.getData());
+			int horaDoDia = postDate.get(Calendar.HOUR_OF_DAY);
+			
+			if(tweetsHorasDia.containsKey(horaDoDia)) {
+				tweetsHorasDia.put(horaDoDia, tweetsHorasDia.get(horaDoDia) + 1);
+			} else {
+				tweetsHorasDia.put(horaDoDia, 1L);
+			}
+		}
+		
+		for(Integer chave : tweetsHorasDia.keySet()) {
+			TweetsHorasDia tweetsHoraDiaResumo = new TweetsHorasDia();
+			tweetsHoraDiaResumo.setHora(chave);
+			tweetsHoraDiaResumo.setTotal(tweetsHorasDia.get(chave));
+			
+			tweetsHorasDiaRepository.save(tweetsHoraDiaResumo);
+		}
 	}
 
 }
