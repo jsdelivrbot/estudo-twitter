@@ -23,6 +23,9 @@ server:
 zuul:
   #Service will be mapped under the /api URI
   prefix: /api
+  host:
+    connect-timeout-millis: 80000
+    socket-timeout-millis: 80000
 
   #  Uncomment to disable auto-registering all services read from Eureka
   #  ignoredServices: '*'
@@ -30,6 +33,7 @@ zuul:
     prospect-service:
       path: /tweets/**
       serviceId: twitter-service-v1
+
       
 
 # Eureka Client Configurations
@@ -43,3 +47,10 @@ security:
   user:
     name: admin
     password: admin
+    
+hystrix:
+  command.default.execution.isolation:
+    strategy: THREAD
+    thread:
+      timeoutInMilliseconds: 80000
+                    

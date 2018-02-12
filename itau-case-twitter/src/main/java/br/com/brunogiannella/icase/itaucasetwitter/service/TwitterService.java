@@ -41,7 +41,7 @@ public class TwitterService {
 		tweetRepository.deleteAll();
 		
 		for (String hashtag : hashtags) {
-			List<Tweet> tweets = this.twitter.searchOperations().search(hashtag, 100).getTweets();
+			List<Tweet> tweets = this.twitter.searchOperations().search(hashtag, 20).getTweets();
 
 			if (tweets != null) {
 				for (Tweet t : tweets) {
