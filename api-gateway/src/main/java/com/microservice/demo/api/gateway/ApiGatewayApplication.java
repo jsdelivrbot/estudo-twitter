@@ -7,7 +7,11 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-
+/**
+ * 
+ * @author Bruno Giannella de Melo
+ * Metodo responsável por inicializar a instância do gateway Zuul da Netflix
+ */
 @EnableZuulProxy
 @EnableDiscoveryClient
 @SpringBootApplication

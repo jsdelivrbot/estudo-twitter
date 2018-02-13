@@ -8,20 +8,20 @@ public class RetornoConsulta implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 3238928680426648159L;
-	
-	private Object data;
-	
+
+	private Object retorno;
+
 	public RetornoConsulta(Object data) {
 		super();
-		this.data = data;
+		this.retorno = data;
 	}
 
-	public Object getData() {
-		return data;
+	public Object getRetorno() {
+		return retorno;
 	}
 
-	public void setData(Object data) {
-		this.data = data;
+	public void setRetorno(Object retorno) {
+		this.retorno = retorno;
 	}
 
 }

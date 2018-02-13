@@ -30,7 +30,7 @@ public class IndicadoresService {
 	}
 
 	public List<TweetsHashTag> consultarTweetsHashTag() {
-		return tweetsHashTagRepository.findAll(new Sort(Sort.Direction.DESC, "total"));
+		return tweetsHashTagRepository.findAll(new Sort(Sort.Direction.ASC, "hashTag"));
 	}
 
 	public List<TweetsHorasDia> consultarTweetsHorasDia() {
