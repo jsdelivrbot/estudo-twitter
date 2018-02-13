@@ -4,6 +4,12 @@ import java.util.Date;
 
 import org.springframework.data.annotation.Id;
 
+/**
+ * 
+ * @author Bruno Giannella
+ * 
+ * Model para gravar os tweets
+ */
 public class Tweet {
 
 	@Id

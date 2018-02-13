@@ -2,6 +2,12 @@ package br.com.brunogiannella.icase.itaucasetwitter.model;
 
 import org.springframework.data.annotation.Id;
 
+/**
+ * 
+ * @author Bruno Giannella
+ * 
+ * Model para indicadores de TopUsers
+ */
 public class TopUsers {
 
 	@Id

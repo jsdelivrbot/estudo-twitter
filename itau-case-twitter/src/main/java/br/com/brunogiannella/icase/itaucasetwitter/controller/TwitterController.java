@@ -16,6 +16,14 @@ import br.com.brunogiannella.icase.itaucasetwitter.service.IndicadoresService;
 import br.com.brunogiannella.icase.itaucasetwitter.service.TwitterService;
 import br.com.brunogiannella.icase.itaucasetwitter.transform.TransformacaoIndicadores;
 
+/**
+ * 
+ * @author Bruno Giannella de Melo
+ * 
+ * Classe responsável por receber as requisições, encaminhar ao service e retornar ao consumidor
+ * Faz o papel do Controller no MVC
+ *
+ */
 @RestController
 @RequestMapping(TwitterController.URI_BASE)
 public class TwitterController {
@@ -29,6 +37,13 @@ public class TwitterController {
 	@Autowired
 	private IndicadoresService indicadoresService;
 
+	/**
+	 * 
+	 * Método responsável por expor uma API POST para processar determinadas hashtags e gravar na base
+	 * 
+	 * @param request EntradaProcessarTwitter - recebe as hashtags a serem processadas e gravadas na base
+	 * @return ResponseEntity - retorna a resposta e também o status code da API
+	 */
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "tweets", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, method = RequestMethod.POST)
 	public ResponseEntity<Object> processTweets(@RequestBody EntradaProcessarTwitter request) {
@@ -36,6 +51,13 @@ public class TwitterController {
 		return new ResponseEntity<>(request, HttpStatus.OK);
 	}
 
+	/**
+	 * 
+	 * Método responsável por expor uma API GET para consultar e retornar os indicadores dos tweets
+	 * 
+	 * @param view String - parâmetro view (neste caso aceita apenas "indicadores")
+	 * @return ResponseEntity - retorna a resposta e também o status code da API
+	 */
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "tweets", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, method = RequestMethod.GET)
 	public ResponseEntity<Object> consultarIndicadores(@RequestParam final String view) {

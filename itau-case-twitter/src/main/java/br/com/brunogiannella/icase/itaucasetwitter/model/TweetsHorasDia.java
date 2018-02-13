@@ -1,5 +1,11 @@
 package br.com.brunogiannella.icase.itaucasetwitter.model;
 
+/**
+ * 
+ * @author Bruno Giannella
+ * 
+ * Model para gravar os indicadores de Posts por hora do dia
+ */
 public class TweetsHorasDia {
 
 	private Integer hora;

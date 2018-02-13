@@ -7,6 +7,12 @@ import br.com.brunogiannella.icase.itaucasetwitter.model.TopUsers;
 import br.com.brunogiannella.icase.itaucasetwitter.model.TweetsHashTag;
 import br.com.brunogiannella.icase.itaucasetwitter.model.TweetsHorasDia;
 
+/**
+ * 
+ * @author Bruno Giannella
+ * 
+ * DTO para retornar a os indicadores através da API.
+ */
 public class SaidaIndicadoresTweets implements Serializable {
 
 	/**

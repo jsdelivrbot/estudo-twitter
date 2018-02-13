@@ -6,6 +6,12 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * 
+ * @author Bruno Giannella
+ * Classe responsável por inicializar e subiro serviço do twitter
+ *
+ */
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableSwagger2

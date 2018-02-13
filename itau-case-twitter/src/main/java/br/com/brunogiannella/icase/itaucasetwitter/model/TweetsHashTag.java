@@ -1,5 +1,11 @@
 package br.com.brunogiannella.icase.itaucasetwitter.model;
 
+/**
+ * 
+ * @author Bruno Giannella
+ * 
+ * Model para gravar os indicadores de HashTags por idioma
+ */
 public class TweetsHashTag {
 
 	private String hashTag;

@@ -13,6 +13,13 @@ import br.com.brunogiannella.icase.itaucasetwitter.repository.TopUsersRepository
 import br.com.brunogiannella.icase.itaucasetwitter.repository.TweetsHashTagRepository;
 import br.com.brunogiannella.icase.itaucasetwitter.repository.TweetsHorasDiaRepository;
 
+/**
+ * 
+ * @author Bruno Giannella de Melo
+ * 
+ * Serviço responsável por buscar e realizar calculos nos indicadores
+ *
+ */
 @Service
 public class IndicadoresService {
 
