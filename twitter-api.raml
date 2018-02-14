@@ -1,0 +1,148 @@
+#%RAML 1.0
+title: Prospect API
+version: v1.0.0
+baseUri: http://localhost:8075/api/tweets/v1
+protocols:
+  - HTTP
+
+documentation:
+ - title: Home
+   content: |
+     Bem vindo a documentação da API de Tweets. Está API permite
+     conectar o consumidor aos indicadores de tweets de determinadas
+     hashtags e também gera-los.
+
+types:
+  topUser:
+    description: Indicador de usuários com mais seguidores
+    type: object
+    properties:
+      apelido:
+        description: Nome do usuário
+        type: string
+        required: true
+        examples:
+          - brunogiannella
+          - itau
+      quantidadeSeguidores:
+        description: Quantidade de seguidores
+        type: number
+        required: true
+        examples:
+          - 230
+          - 200000
+  hashTagPorPais:
+    description: Indicador de hash tags por idioma
+    type: object
+    properties:
+      hashTag:
+        description: Descrição da hashtag
+        type: string
+        required: true
+        examples:
+          - openbanking
+          - raml
+      pais:
+        description: Idioma do pais com tweets da hashtag
+        type: string
+        required: true
+        examples:
+          - en
+          - pt
+      total:
+        description: Quantidade de tweets
+        type: number
+        required: true
+        examples:
+          - 230
+          - 200000
+  resumoTweetsPorHora:
+    description: Indicador de tweets por hora do dia
+    type: object
+    properties:
+      hora:
+        description: Hora do dia
+        type: number
+        required: true
+        examples:
+          - 10
+          - 21
+      total:
+        description: Quantidade de tweets
+        type: number
+        required: true
+        examples:
+          - 230
+          - 200000
+  lista-indicadores:
+    description: Indicador de tweets por hora do dia
+    type: object
+    properties:
+      topUsers:
+        description: Lista de indicadores de topUsers
+        type: topUser[]
+        required: false
+      hashTagsPorPais:
+        description: Lista de indicadores de HashTags por pais
+        type: hashTagPorPais[]
+        required: false
+      resumoTweetsPorHora:
+        description: Lista de indicadores de Tweets por hora
+        type: resumoTweetsPorHora[]
+        required: false
+  lista-hashtags:
+    description: Lista de hashtags
+    type: object
+    properties:
+      hashtags:
+        description: Lista de hashtags
+        type: string[]
+        required: true
+      
+/tweets:
+  description: Entidade Tweets
+  displayName: Prospect Resource
+  get:
+    description: Consulta dos indicadores
+    queryParameters:
+      view:
+        description: Parâmetro representando a visão desejada
+        type: string
+        required: true
+        example: "indicadores"
+    responses:
+      200:
+        description: Success - find more than one prospect
+        body:
+          application/json:
+            properties:
+              type: lista-indicadores
+      204:
+        description: Nenhum indicador encontrado
+      400:
+        description: parâmetros inválidos
+      500:
+        description: Erro interno do servidor
+
+  post:
+    description: Consulta e armazenamento de tweets
+    body:
+      application/json:
+        properties:
+          type: lista-hashtags
+    responses:
+      201:
+        description: Success - criação de tweets
+        headers:
+          Location:
+            description: Resource location
+        body:
+          application/json:
+            properties:
+              type: lista-hashtags
+      400:
+        description: parâmetros inválidos
+      500:
+        description: Erro interno do servidor
+
+ 
