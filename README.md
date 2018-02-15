@@ -43,7 +43,7 @@ docker run --net host -p 9671:9671 -t eureka-server:1.0.0
 cd itau-case-twitter
 mvn clean install
 docker build -t twitter-service:1.0.0 .
-docker run --net host -p 8080:8080 -t twitter-service:1.0.0
+docker run --net host -p 8090:8090 -t twitter-service:1.0.0
 ```
 
 ***API Gateway

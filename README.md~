@@ -24,6 +24,12 @@ RAML para documentar a API
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
 ### Construção dos Containers
+
+***MongoDB
+```bash
+sudo docker run --net host -p 27000:27017 --name mongo mongo
+```
+
 ***Eureka Server
 ```bash
 cd eureka-server

@@ -44,7 +44,7 @@ public class TwitterController {
 	 * @param request EntradaProcessarTwitter - recebe as hashtags a serem processadas e gravadas na base
 	 * @return ResponseEntity - retorna a resposta e também o status code da API
 	 */
-	@CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "http://localhost:8080")
 	@RequestMapping(value = "tweets", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, method = RequestMethod.POST)
 	public ResponseEntity<Object> processTweets(@RequestBody EntradaProcessarTwitter request) {
 		twitterService.processarTweets(request.getHashtags());
