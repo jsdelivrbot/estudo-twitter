@@ -163,7 +163,7 @@ function atualizarDados() {
     ]
   }
   axios
-  .post(`http://localhost:8090/v1/tweets/processarTweets`, request)
+  .post(`http://localhost:8090/v1/tweets`, request)
   .then(() => refresh());
 }
 

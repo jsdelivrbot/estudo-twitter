@@ -24,6 +24,7 @@ import br.com.brunogiannella.icase.itaucasetwitter.transform.TransformacaoIndica
  * Faz o papel do Controller no MVC
  *
  */
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(TwitterController.URI_BASE)
 public class TwitterController {
@@ -44,8 +45,7 @@ public class TwitterController {
 	 * @param request EntradaProcessarTwitter - recebe as hashtags a serem processadas e gravadas na base
 	 * @return ResponseEntity - retorna a resposta e também o status code da API
 	 */
-    @CrossOrigin(origins = "http://localhost:8080")
-	@RequestMapping(value = "tweets", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, method = RequestMethod.POST)
+	@RequestMapping(value = "tweets/processarTweets", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, method = RequestMethod.POST)
 	public ResponseEntity<Object> processTweets(@RequestBody EntradaProcessarTwitter request) {
 		twitterService.processarTweets(request.getHashtags());
 		return new ResponseEntity<>(request, HttpStatus.OK);
@@ -58,7 +58,6 @@ public class TwitterController {
 	 * @param view String - parâmetro view (neste caso aceita apenas "indicadores")
 	 * @return ResponseEntity - retorna a resposta e também o status code da API
 	 */
-	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "tweets", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, method = RequestMethod.GET)
 	public ResponseEntity<Object> consultarIndicadores(@RequestParam final String view) {
 		if ("indicadores".equals(view)) {
