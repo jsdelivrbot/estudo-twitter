@@ -1,0 +1,104 @@
+swagger: '2.0'
+info:
+  title: Twitter API
+  description: Indicadores de tweets para determinadas hashtags
+  version: v1
+host: localhost:8075
+basePath: /api/tweets/v1
+schemes:
+  - http
+
+definitions:
+  topUser:
+    type: object
+    properties:
+      apelido:
+        type: string
+      valor:
+        type: number
+  hashTagPorPais:
+    type: object
+    properties:
+      hashTag:
+        type: string
+      pais:
+        type: string
+      total:
+        type: number
+  resumoTweetsPorHora:
+    type: object
+    properties:
+      hora:
+        type: number
+      total:
+        type: number
+  lista-indicadores:
+    type: object
+    properties:
+      topUsers:
+        type: array
+        items:
+          $ref: '#/definitions/topUser'
+      hashTagsPorPais:
+        type: array
+        items:
+          $ref: '#/definitions/hashTagPorPais'
+      resumoTweetsPorHora:
+        type: array
+        items:
+          $ref: '#/definitions/resumoTweetsPorHora'
+  lista-hashtags:
+    type: object
+    properties:
+      hashtags:
+        type: array
+        items:
+          type: string
+ 
+paths:
+  /tweets:
+    post:
+      summary: Consulta e armazenamento de tweets
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: body
+        description: Lista de hashtags e serem processadas
+        required: true
+        schema:
+           $ref: '#/definitions/lista-hashtags'
+      responses:
+        '201':
+          description: criação de tweets
+          schema:
+            $ref: '#/definitions/lista-hashtags'
+        '400':
+          description: parâmetros inválidos
+        '500':
+          description: erro interno
+    get:
+      summary: Consulta de indicadores dos tweets
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: query
+        name: view
+        description: Parâmetro representando a visão desejada
+        required: true
+        schema:
+           $ref: '#/definitions/lista-hashtags'
+      responses:
+        '200':
+          description: indicadores dos tweets
+          schema:
+            $ref: '#/definitions/lista-indicadores'
+        '204':
+          description: nenhum indicador encontrado
+        '400':
+          description: parâmetros inválidos
+        '500':
+          description: erro interno
