@@ -54,6 +54,13 @@ docker build -t api-gateway:1.0.0 .
 docker run --net host -p 8075:8075 -t api-gateway:1.0.0
 ```
 
+***Client 
+```bash
+cd twitter-service-client
+docker build -t twitter-service-client .
+docker run --net host -p 8080:8080 -t twitter-service-client:1.0.0
+```
+
 ## Execução
 
 - Consumir os Tweets e gravar na base de dados / geração de indicadores --> POST http://localhost:8075/api/tweets/v1/tweets/processarTweets
