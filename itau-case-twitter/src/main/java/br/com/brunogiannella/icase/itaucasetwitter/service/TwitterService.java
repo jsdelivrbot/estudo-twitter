@@ -52,6 +52,8 @@ public class TwitterService {
 	 */
 	public void processarTweets(List<String> hashtags) {
 		
+		tweetRepository.deleteAll();
+		
 		// iterar por cada uma das hashtags
 		for (String hashtag : hashtags) {
 			

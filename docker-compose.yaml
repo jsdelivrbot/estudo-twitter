@@ -1,0 +1,31 @@
+version: "2"
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27000:27017"
+
+  eureka:
+    image: eureka-server:app
+    container_name: eureka
+    ports:
+      - "9671:9671"
+    
+  twitter-service:
+    image: twitter-service:app
+    container_name: do
+    ports:
+      - "8090:8090"
+    links:
+      - "mongodb"
+      - "eureka"
+
+  apigateway:
+    image: api-gateway:app
+    container_name: apigateway
+    ports:
+      - "8075:8075"
+    links:
+      - "eureka"

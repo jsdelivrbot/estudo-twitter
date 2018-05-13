@@ -40,7 +40,7 @@ zuul:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:9761/eureka/
+      defaultZone: http://eureka:9761/eureka/
 
 # Security
 security:
